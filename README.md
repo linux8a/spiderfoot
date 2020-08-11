@@ -284,6 +284,49 @@ XForce Exchange|Obtain information from IBM X-Force Exchange|
 Yandex DNS|Check if a host would be blocked by Yandex DNS|
 Zone-H Defacement Check|Check if a hostname/domain appears on the zone-h.org 'special defacements' RSS feed.|
 
+### Docker
+
+Nota: Modificate dockerfile for linux8a@gmail.com
+
+* fix in version pip. Solucion upgrade pip version stable. Add this line en dockerfile [pip3 install --upgrade pip ]
+
+
+* Usage:
+
+docker-compose up -d
+
+or docker cli
+
+```
+   sudo docker build -t spiderfoot .
+   sudo docker run -p 5001:5001 spiderfoot
+```
+
+* Using Docker volume for spiderfoot data
+
+```
+   sudo docker run -p 5001:5001 -v /mydir/spiderfoot:/var/lib/spiderfoot spiderfoot
+```
+
+* Using SpiderFoot remote command line with web server
+
+```
+   docker run --rm -it spiderfoot sfcli.py -s http://my.spiderfoot.host:5001/
+```
+
+* Running spiderfoot commands without web server (can optionally specify volume)
+
+```
+   sudo docker run --rm spiderfoot sf.py -h
+```
+
+* Running spiderfoot unit tests in container
+
+```   
+   sudo docker run --rm spiderfoot -m unittest discover -s test/unit
+```
+
+
 ### DOCUMENTATION
 
 Read more at the [project website](https://www.spiderfoot.net/r.php?u=aHR0cHM6Ly93d3cuc3BpZGVyZm9vdC5uZXQv&s=os_gh), including more complete documentation, blog posts with tutorials/guides, plus information about [SpiderFoot HX](https://www.spiderfoot.net/r.php?u=aHR0cHM6Ly93d3cuc3BpZGVyZm9vdC5uZXQvaHgvCg==&s=os_gh).
